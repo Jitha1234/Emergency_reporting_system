@@ -1,0 +1,195 @@
+<%- include('../fire/dheader'); %>
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title ">Accident Reports </h4>
+                        <p class="card-category"> Reports include Fire Department only</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class="text-primary">
+                                    <th>Name</th>
+                                    <th>Accident</th>
+                                    <th>Address</th>
+                                    <th>Landmark</th>
+                                    <th>fire</th>
+                                    <th>ambulance</th>
+                                    <th>Cops</th>
+                                    <th>Electrical</th>
+                                    <th>Details</th>
+                                    <tbody id="champ">
+                                        <!--
+                                        <% for(var i=0; i < reports.length; i++) { %>
+                                        <tr>
+                                            <td><%= reports[i].user[0].firstname %> <%= reports[i].user[0].lastname %></td>
+                                            <td><%= reports[i].subject %></td>
+                                            <td><%= reports[i].address %></td>
+                                            <td><%= reports[i].landmark %></td>
+                                            <td>
+                                                <% if(reports[i].fire === '0'){ %>
+                                                    <img src="../images/statusimg/cross.png" alt="pending" height="25" width="25">
+                                                <% } %>
+                                                <% if(reports[i].fire === '1'){ %>
+                                                <img src="../images/statusimg/wait.gif" alt="pending" height="25" width="25">
+                                                <% } %>
+                                                <% if(reports[i].fire === '10'){ %>
+                                                    <img src="../images/statusimg/blktick.png" alt="pending" height="25" width="25">
+                                                <% } %>
+                                                <% if(reports[i].fire === '11'){ %>
+                                                    <img src="../images/statusimg/grntick.png" alt="pending" height="25" width="25">
+                                                <% } %>
+                                            </td>
+                                            <td>
+                                                <% if(reports[i].ambulance === '0'){ %>
+                                                    <img src="../images/statusimg/cross.png" alt="pending" height="25" width="25">
+                                                <% } %>
+                                                <% if(reports[i].ambulance === '1'){ %>
+                                                <img src="../images/statusimg/wait.gif" alt="pending" height="25" width="25">
+                                                <% } %>
+                                                <% if(reports[i].ambulance === '10'){ %>
+                                                    <img src="../images/statusimg/blktick.png" alt="pending" height="25" width="25">
+                                                <% } %>
+                                                <% if(reports[i].ambulance === '11'){ %>
+                                                    <img src="../images/statusimg/grntick.png" alt="pending" height="25" width="25">
+                                                <% } %>
+                                            </td>
+                                            <td>
+                                                <% if(reports[i].cops === '0'){ %>
+                                                    <img src="../images/statusimg/cross.png" alt="pending" height="25" width="25">
+                                                <% } %>
+                                                <% if(reports[i].cops === '1'){ %>
+                                                <img src="../images/statusimg/wait.gif" alt="pending" height="25" width="25">
+                                                <% } %>
+                                                <% if(reports[i].cops === '10'){ %>
+                                                    <img src="../images/statusimg/blktick.png" alt="pending" height="25" width="25">
+                                                <% } %>
+                                                <% if(reports[i].cops === '11'){ %>
+                                                    <img src="../images/statusimg/grntick.png" alt="pending" height="25" width="25">
+                                                <% } %>
+                                            </td>
+                                            <td>
+                                                <% if(reports[i].electrical === '0'){ %>
+                                                    <img src="../images/statusimg/cross.png" alt="pending" height="25" width="25">
+                                                <% } %>
+                                                <% if(reports[i].electrical === '1'){ %>
+                                                <img src="../images/statusimg/wait.gif" alt="pending" height="25" width="25">
+                                                <% } %>
+                                                <% if(reports[i].electrical === '10'){ %>
+                                                    <img src="../images/statusimg/blktick.png" alt="pending" height="25" width="25">
+                                                <% } %>
+                                                <% if(reports[i].electrical === '11'){ %>
+                                                    <img src="../images/statusimg/grntick.png" alt="pending" height="25" width="25">
+                                                <% } %>
+                                            </td>
+                                            <td> <a href="/fire/details?id=<%= reports[i]._id %>">
+                                                <button type="submit" class="btn btn-primary">Details</button>
+                                            </a>
+                                            </td>
+                                        </tr>
+                                        <% } %>-->
+                                    </tbody>
+                                    <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+                                    <script>
+                                        setInterval(function() {
+                                            //Your code
+                                            $.ajax({
+                                                type: 'GET',
+                                                url: '/fire/rerep',
+                                                success: function(reports) {
+                                                    var html = '';
+                                                    for (var i = 0; i< reports.length; i++) {
+                                                        html += '<tr>'+ '<td>'+ reports[i].user[0].firstname + ' '+  reports[i].user[0].lastname +'</td>'+
+                                                        '<td>'+ reports[i].subject +'</td>' +
+                                                        '<td>'+ reports[i].address +'</td>'+
+                                                        '<td>'+ reports[i].landmark + '</td>'+
+                                                        '<td>' 
+                                                            if(reports[i].fire === '0'){
+                                                                html +='<img src="../images/statusimg/cross.png" alt="pending" height="25" width="25">'
+                                                            }
+                                                            if(reports[i].fire === '1'){
+                                                                html +='<img src="../images/statusimg/wait.gif" alt="pending" height="25" width="25">'
+                                                            }
+                                                            if(reports[i].fire === '10'){
+                                                                html +='<img src="../images/statusimg/blktick.png" alt="pending" height="25" width="25">'
+                                                            }
+                                                            if(reports[i].fire === '11'){
+                                                                html +='<img src="../images/statusimg/grntick.png" alt="pending" height="25" width="25">'
+                                                            }
+                                                            html += '</td>'+
+                                                            
+                                                             '<td>' 
+                                                            if(reports[i].ambulance === '0'){
+                                                                html +='<img src="../images/statusimg/cross.png" alt="pending" height="25" width="25">'
+                                                            }
+                                                            if(reports[i].ambulance === '1'){
+                                                                html +='<img src="../images/statusimg/wait.gif" alt="pending" height="25" width="25">'
+                                                            }
+                                                            if(reports[i].ambulance === '10'){
+                                                                html +='<img src="../images/statusimg/blktick.png" alt="pending" height="25" width="25">'
+                                                            }
+                                                            if(reports[i].ambulance === '11'){
+                                                                html +='<img src="../images/statusimg/grntick.png" alt="pending" height="25" width="25">'
+                                                            }
+                                                            html += '</td>'+
+                                                           
+                                                           
+                                                            '<td>' 
+                                                            if(reports[i].cops === '0'){
+                                                                html +='<img src="../images/statusimg/cross.png" alt="pending" height="25" width="25">'
+                                                            }
+                                                            if(reports[i].cops === '1'){
+                                                                html +='<img src="../images/statusimg/wait.gif" alt="pending" height="25" width="25">'
+                                                            }
+                                                            if(reports[i].cops === '10'){
+                                                                html +='<img src="../images/statusimg/blktick.png" alt="pending" height="25" width="25">'
+                                                            }
+                                                            if(reports[i].cops === '11'){
+                                                                html +='<img src="../images/statusimg/grntick.png" alt="pending" height="25" width="25">'
+                                                            }
+                                                            html += '</td>'+
+
+
+                                                            '<td>' 
+                                                            if(reports[i].electrical === '0'){
+                                                                html +='<img src="../images/statusimg/cross.png" alt="pending" height="25" width="25">'
+                                                            }
+                                                            if(reports[i].electrical === '1'){
+                                                                html +='<img src="../images/statusimg/wait.gif" alt="pending" height="25" width="25">'
+                                                            }
+                                                            if(reports[i].electrical === '10'){
+                                                                html +='<img src="../images/statusimg/blktick.png" alt="pending" height="25" width="25">'
+                                                            }
+                                                            if(reports[i].electrical === '11'){
+                                                                html +='<img src="../images/statusimg/grntick.png" alt="pending" height="25" width="25">'
+                                                            }
+                                                            html += '</td>'+
+
+                                                            '<td>'+ 
+                                                                '<a href="/fire/details?id='+ reports[i]._id +'">'+
+                                                '<button type="submit" class="btn btn-primary">'+'Details'+'</button>'
+                                            +'</a>' + '</td>'+
+
+                                                        +'</tr>'
+                                                        ;
+                                                    }
+                                                    $('#champ').html(html);
+                                                }
+                                            });
+                                        }, 2000); //Every 1000ms = 1sec
+                                    </script>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<%- include('../fire/dfooter'); %>

@@ -1,0 +1,99 @@
+<%- include('../fire/dheader'); %>
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card card-chart">
+                    <div class="card-header card-header-danger">
+                        <img class="col-md-12" src="../images/accuploads/<%= response[0]._id %>.jpeg"  alt="">
+                    </div>
+                    <div class="card-body">
+                      <h4 class="card-title">Accident photograph</h4>
+                    </div>
+                    <div class="card-footer">
+                      <div class="stats">
+                        <i class="material-icons">access_time</i> updated 4 minutes ago
+                      </div>
+                    </div>
+                  </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                      <h4 class="card-title">Accident Stats</h4>
+                      <p class="card-category">Details of accident ID : <%= response[0]._id %> </p>
+                    </div>
+                    <div class="card-body table-responsive">
+                      <table class="table table-hover">
+                        <thead class="text-warning">
+                          <th>Info</th>
+                          <th>Details</th>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Accident</td>
+                            <td><%= response[0].subject %></td>
+                          </tr>
+                          <tr>
+                            <td>Description</td>
+                            <td><%= response[0].description %></td>
+                          </tr>
+                          <tr>
+                            <td>Address</td>
+                            <td><%= response[0].address %></td>
+                          </tr>
+                          <tr>
+                            <td>Landmark</td>
+                            <td><%= response[0].landmark %></td>
+                          </tr>
+                          <tr>
+                            <td>Map link</td>
+                            <td>
+                                <a class="btn btn-danger" href="https://www.google.com/maps/search/?api=1&query=<%= response[0].latitude %>,<%= response[0].longitude %>" target="_blank">
+                                    <i class="material-icons">room</i> &nbsp; <span><b>Locate</b></span>
+                                </a>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Time</td>
+                            <td><%=  response[0].time %></td>
+                          </tr>
+                          <tr>
+                            <td>Reporter Name</td>
+                            <td><%= response[0].user[0].firstname %> <%= response[0].user[0].lastname %></td>
+                          </tr>
+                          <tr>
+                            <td>Email</td>
+                            <td><%= response[0].user[0].email %></td>
+                          </tr>
+                          <tr>
+                            <td>Phone No</td>
+                            <td><%= response[0].user[0].phone %></td>
+                          </tr>
+                          <tr>
+                            <td>Reporter ID</td>
+                            <td><%= response[0].user[0]._id %></td>
+                          </tr>
+                          <tr>
+                            <td>Accept Case</td>
+                            <td>
+                          <% if(response[0].fire === '11'){ %>
+                            <span class="btn btnd" style="pointer-events: none;">
+                              <i class="material-icons">check</i> &nbsp; <span><b>Accept</b></span>
+                            </span>
+                            <% } else { %>
+                              <a class="btn btn-success" href="/fire/accept?id=<%= response[0]._id %>">
+                                <i class="material-icons">check</i> &nbsp; <span><b>Accept</b></span>
+                              </a>
+                              <%}%>
+                        </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+            </div>
+          </div>
+    </div>
+</div>
+<%- include('../fire/dfooter'); %>

@@ -1,0 +1,135 @@
+<%- include('../admin/dheader'); %>
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title">Admin Register</h4>
+                  <p class="card-category">Registar a new system admin</p>
+                </div>
+                <div class="card-body">
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+                    <script>
+                        $("body").on('click', '.toggle-password', function() {
+                            $(this).toggleClass("fa-eye fa-eye-slash");
+                            var input = $("#pass_log_id");
+                            if (input.attr("type") === "password") {
+                                input.attr("type", "text");
+                            } else {
+                                input.attr("type", "password");
+                            }
+                        });
+                    </script>
+                    <script>
+                        $("body").on('click', '.toggle-password2', function() {
+                            $(this).toggleClass("fa-eye fa-eye-slash");
+                            var input = $("#cpass_log_id");
+                            if (input.attr("type") === "password") {
+                                input.attr("type", "text");
+                            } else {
+                                input.attr("type", "password");
+                            }
+                        });
+                    </script>
+                    <script>
+                        function validate(){
+                            var name = document.regform.name.value;
+                            var phone = document.regform.phone.value;
+                            var email = document.regform.email.value;
+                            var password = document.regform.password.value;
+                            var confirmpassword = document.regform.confirmpassword.value;
+                            if(name == null || name == ""){
+                                alert("Name can't be blank");
+                                return false; 
+                            }
+                            if(name.length <= 3){
+                                document.getElementById("hiden").hidden=false;
+                                var element = document.getElementById("ertext");
+                                element.innerHTML = "Name letter count more than 3";
+                                return false;
+                            }
+                            var phoneno = /^\d{10}$/;
+                            if(phone.match(phoneno)){
+                            }
+                            else{
+                                document.getElementById("hiden").hidden=false;
+                                var element = document.getElementById("ertext");
+                                element.innerHTML = "enter a valied phone number";
+                                return false;
+                            }
+                            if(password.length <= 6 ){
+                                document.getElementById("hiden").hidden=false;
+                                var element = document.getElementById("ertext");
+                                element.innerHTML = "password must more than 6 charactor";
+                                return false; 
+                            }
+                            if(password.length >= 16 ){
+                                document.getElementById("hiden").hidden=false;
+                                var element = document.getElementById("ertext");
+                                element.innerHTML = "password must less than 16 charactor";
+                                return false; 
+                            }
+                            if(confirmpassword != password ){
+                                document.getElementById("hiden").hidden=false;
+                                var element = document.getElementById("ertext");
+                                element.innerHTML = "confirm password not match with password";
+                                return false; 
+                            }
+                        }
+                    </script>
+                  <form name="regform"onsubmit="return validate()" method="POST">
+                    <div class="row">
+                      <div class="col-md-5">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Name</label>
+                          <input type="text" name="name" class="form-control" required >
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">phone No</label>
+                          <input type="text" name="phone" class="form-control" required>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Email address</label>
+                          <input type="email" name="email" class="form-control" required >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Password</label>
+                          <input type="password" name="password" id="pass_log_id" class="form-control" required>
+                          <span toggle="#password-field" class="fa fa-fw fa-eye field_icon toggle-password"></span>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Confirm password</label>
+                          <input type="password" name="confirmpassword" id="cpass_log_id" class="form-control" required>
+                          <span toggle="#password-field" class="fa fa-fw fa-eye 2 field_icon toggle-password2"></span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-12" id="hiden" style="background-color: red;"hidden>
+                        <span  id="ertext" style="color: seashell; font-size: larger;font-weight: bolder;">  </span>
+                    </div>
+                    <button type="submit" class="btn btn-primary pull-right">Register</button>
+                    <div class="clearfix"></div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+</div>
+
+
+
+
+<%- include('../admin/dfooter'); %>
